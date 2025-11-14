@@ -1,0 +1,286 @@
+# Teste_cego_IA_vs_Homem
+Código html exemplificando e orientaldo com o código html/css/javascript é elaborado con finalidade comparativa de desempenhos entre Inteligência Artificial versus Intuição Humana
+
+ROTEIRO: 
+Sugestão para execução desse teste:
+
+(i) Teste de previsões cegas:  Os pesquisadores registram suas previsões antes do experimento, enquanto a IA analisa os mesmos dados sem acesso a essas informações. Depois, comparam-se os acertos e as justificativas de ambos. É uma forma direta e justa de ver se a IA consegue “intuir” padrões como o ser humano.
+
+(ii) Descoberta em dados ocultos: Humanos e IA estudam apenas parte de um conjunto de dados e fazem previsões sobre uma parte que permanece escondida. Quando os dados ocultos são revelados, verifica-se quem previu melhor. Esse teste mostra quem realmente compreende a lógica por trás dos fenômenos (e quem apenas reconhece padrões).
+
+(iii) Desenho de experimentos: Tanto a IA quanto os humanos propõem protocolos experimentais para alcançar o melhor resultado possível. As propostas são executadas e comparadas em termos de eficiência, custo e resultado. É um teste da capacidade de planejar, onde a intuição humana costuma brilhar (mas a IA pode surpreender).
+
+(iv) Interpretação de resultados ambíguos: Ambos recebem dados complexos ou inconclusivos e devem sugerir a próxima etapa do estudo. Depois, compara-se qual recomendação realmente ajudou a resolver o problema. Aqui se testa a sensibilidade interpretativa (o “instinto” de leitura de sinais sutis).
+
+(v) Avaliação por especialistas: As respostas de humanos e IA são apresentadas de forma anônima a um painel de especialistas, que julga qualidade, coerência e criatividade sem saber quem é quem. O resultado mostra se a IA já consegue soar tão convincente (e intuitiva quanto uma mente humana).
+Enfim, a experimentação é o melhor caminho para conclusões. 
+
+_________________________
+
+
+PROTOCOLO - TESTE CEGO — IA vs Intuição Humana
+
+===== Início do Protocolo=====
+
+Resumo: Protocolo prático e replicável para comparar previsões, hipóteses e decisões de IAs científicas com a intuição de pesquisadores humanos. Contém passos operacionais para os cinco testes, templates de pré-registro, formulários de coleta e métricas de avaliação.
+
+1. Objetivo
+- Avaliar, de modo controlado e reproduzível, até que ponto modelos de IA conseguem igualar ou complementar a intuição humana em tarefas científicas de previsão, descoberta e projeto experimental.
+
+2. Visão geral do ensaio
+- Cinco blocos de teste: 
+(1) Previsões Cegas, 
+(2) Descoberta em Dados Ocultos, 
+(3) Desenho de Experimentos, 
+(4) Interpretação de Resultados Ambíguos, 
+(5) Avaliação por Especialistas.
+-  Procedimento double-blind entre as equipes humanas/IA e os avaliadores quando aplicável.
+- Pre-registro do protocolo e das previsões humanas antes de iniciar execuções.
+
+3. Recursos necessários
+- Conjunto(s) de dados apropriados (ou simulações realistas).
+- Acesso à(s) plataforma(s) de IA (modelo(s) e API/documentação).
+- Equipe humana (pesquisadores com expertise relevante).
+- Ambiente de execução (laboratório ou plataforma de simulação).
+- Planilhas/DB para coleta de respostas, justificativas e resultados.
+
+4. Pré-registro (template rápido)
+- Título do experimento
+- Data de pré-registro
+- Equipe/afiliações
+- Hipóteses (lista numerada)
+- Critérios de sucesso (métricas primárias/secundárias)
+- Plano de análise estatística
+- Registro de conflito de interesse
+- Instrução: publicar o pré-registro em repositório público ou armazenar num arquivo com carimbo de data.
+
+5. Procedimento detalhado por teste
+Teste 1 — Previsões Cegas
+- Pesquisadores escrevem 15–30 previsões numeradas com justificativas curtas; pre-registro.
+- Fornecer à IA apenas os dados brutos e o enunciado geral do problema (sem previsões humanas).
+- Solicitar à IA que produza uma lista de previsões equivalentes com justificativas.
+p Revelar os dados de avaliação e comparar acurácia e justificativas.
+- Coleta: tabela com ID, fonte (humano/IA), previsão, justificação, resultado observado (V/F), métrica.
+
+Teste 2 — Descoberta em Dados Ocultos
+- Dividir dataset em A (treino), B (validação) e C (teste, oculto).
+- Humanos e IA recebem A+B; ambos registram previsões sobre C.
+- Revelar C e calcular métricas (RMSE, AUC, acurácia, etc.).
+- Coleta: previsões por item/variável, métricas por participante/método.
+
+Teste 3 — Desenho de Experimentos
+- Definir objetivo objetivo mensurável (ex.: maximizar rendimento).
+- Humanos e IA submetem protocolos experimentais (params, ordem, controles).
+- Executar protocolos em laboratório/simulador.
+- Comparar resultados, custos e número de iterações.
+- Coleta: protocolo submetido, recursos usados, resultado final, tempo, comentários de viabilidade.
+
+Teste 4 — Interpretação de Resultados Ambíguos
+- Preparar conjuntos de resultados com sinais fracos/ruído.
+- Pedir interpretações e próxima recomendação experimental (humano e IA).
+- Executar recomendação mais promissora e registrar qual solução resolveu ambiguidade.
+- Coleta: interpretação, recomendação, eficácia da recomendação, tempo até resolução.
+
+Teste 5 — Avaliação por Especialistas (double-blind)
+-Formatar respostas/relatórios de humanos e IA de forma anônima.
+-Painel de 5–9 especialistas avalia blindado segundo rubric: qualidade, originalidade, plausibilidade, utilidade.
+-Reunir notas e justificar diferenciações; verificar se há correlação com desempenho objetivo.
+-Coleta: notas por critério, comentários, identificação incorreta (se jurados detectam IA), correlação com resultados empíricos.
+
+6. Métricas e análise
+- Métrica primária por teste (exemplos): acurácia das previsões, RMSE em dados ocultos, rendimento experimental, taxa de resolução de ambiguidade, pontuação média do painel.
+- Métricas secundárias: tempo para gerar previsão, custo, número de iterações, coerência da justificativa (escala), taxa de false positives/negatives.
+- Análise estatística: testes de hipótese apropriados (t-test, Mann-Whitney, bootstrap CI), ajuste para múltiplas comparações quando necessário.
+-Reporte de incerteza: fornecer intervalos de confiança e effect sizes.
+
+7. Planilha / formato de coleta (exemplo)
+- Tabela Previsões: ID | Autor (H/IA) | Previsão # | Texto previsão | Justificação curta | Resultado observado | Acerto (1/0) | Observações
+- Tabela Protocolos: ID | Autor | Parâmetros principais | Expectativa | Resultado | Custo | Tempo | Segurança
+- Tabela Avaliação: Item ID | Avaliador | Critério1..4 | Nota média | Comentário
+
+8. Cronograma sugerido (exemplo rápido)
+
+Semana 0: Pré-registro, seleção de datasets, definir equipe.
+Semana 1–2: Execução Teste 1 e 2 (coleta inicial).
+Semana 3–4: Execução Teste 3 e 4 (laboratório/simulação).
+Semana 5: Teste 5 — painel de especialistas.
+Semana 6: Análise e relatório preliminar.
+
+9. Replicação e robustez
+-Repetir cada sub-teste com pelo menos 3 datasets/contexts distintos.
+-Usar diferentes modelos de IA (arquiteturas/treinos) para checar sensibilidade ao modelo.
+
+10. Ética, viés e transparência
+-Declare vieses conhecidos e limitações.
+-Assegure que a IA não tenha acesso a previsões humanas (log de inputs).
+-Obtenha aprovações institucionais se envolveram participantes humanos/experimentos com risco.
+
+11. Anexos úteis
+A. Rubrica de avaliação (5 pontos por critério): qualidade, originalidade, plausibilidade, utilidade, clareza.
+B. Exemplo de texto de pré-registro (breve).
+C. CSV templates (tabelas acima para copiar/colar).
+
+12. Como usar este protocolo
+-Baixe ou copie o conteúdo para o repositório da equipe.
+-Ajuste os datasets e métricas ao domínio específico.
+-Execute os testes na ordem sugerida — mas tudo é modular.
+-Publique pré-registro e depois os resultados e materiais suplementares.
+
+=====Fim do Protocolo=====
+
+
+//////////////////// TRADUÇÃO EM INGLÊS ///////////////////
+
+ TRADUÇÃO EM INGLÊS
+
+Taking advantage of the suggestion, here are some suggestions for conducting this test:
+
+(i) Blind prediction test: Researchers record their predictions before the experiment, while the AI ​​analyzes the same data without access to this information. Then, the accuracy and justifications of both are compared. It's a direct and fair way to see if the AI ​​can "intuit" patterns like a human.
+
+(ii) Discovery in hidden data: Humans and AI study only part of a dataset and make predictions about a part that remains hidden. When the hidden data is revealed, it is verified who predicted better. This test shows who truly understands the logic behind the phenomena (and who only recognizes patterns).
+
+(iii) Experimental design: Both AI and humans propose experimental protocols to achieve the best possible outcome. The proposals are executed and compared in terms of efficiency, cost, and result. It is a test of planning ability, where human intuition often shines (but AI can surprise).
+
+(iv) Interpretation of ambiguous results: Both receive complex or inconclusive data and must suggest the next step in the study. Then, a comparison is made of which recommendation actually helped solve the problem. Here, interpretive sensitivity (the "instinct" to read subtle signals) is tested.
+
+(v) Expert evaluation: The responses of humans and AI are presented anonymously to a panel of experts, who judge quality, coherence, and creativity without knowing who is who. The result shows whether the AI ​​can already sound as convincing (and intuitive) as a human mind.
+
+In short, experimentation is the best path to conclusions.
+
+_____________________________
+
+PROTOCOL - BLIND TEST — AI vs Human Intuition
+
+===== Start of Protocol=====
+
+Summary: Practical and replicable protocol for comparing predictions, hypotheses, and decisions made by scientific AIs with the intuition of human researchers. Contains operational steps for the five tests, pre-registration templates, collection forms, and evaluation metrics.
+
+1. Objective
+- To evaluate, in a controlled and reproducible manner, the extent to which AI models can match or complement human intuition in scientific tasks of prediction, discovery, and experimental design.
+
+2. Overview of the trial
+- Five test blocks: 
+(1) Blind Predictions, 
+(2) Discovery in Hidden Data, 
+(3) Design of Experiments, 
+(4) Interpretation of Ambiguous Results, 
+(5) Expert Evaluation.
+- Double-blind procedure between human/AI teams and evaluators when applicable.
+- Pre-registration of the protocol and human predictions before starting runs.
+
+3. Necessary resources
+- Appropriate data set(s) (or realistic simulations).
+- Access to AI platform(s) (model(s) and API/documentation).
+- Human team (researchers with relevant expertise).
+- Execution environment (laboratory or simulation platform).
+- Spreadsheets/DB for collecting responses, justifications, and results.
+
+PROTOCOL - BLIND TEST — AI vs Human Intuition
+
+===== Start of Protocol=====
+
+Summary: Practical and replicable protocol for comparing predictions, hypotheses, and decisions made by scientific AIs with the intuition of human researchers. Contains operational steps for the five tests, pre-registration templates, collection forms, and evaluation metrics.
+
+1. Objective
+- To evaluate, in a controlled and reproducible manner, the extent to which AI models can match or complement human intuition in scientific tasks of prediction, discovery, and experimental design.
+
+2. Overview of the trial
+- Five test blocks: 
+(1) Blind Predictions, 
+(2) Discovery in Hidden Data, 
+(3) Design of Experiments, 
+(4) Interpretation of Ambiguous Results, 
+(5) Expert Evaluation.
+- Double-blind procedure between human/AI teams and evaluators when applicable.
+- Pre-registration of the protocol and human predictions before starting runs.
+
+3. Necessary resources
+- Appropriate data set(s) (or realistic simulations).
+- Access to AI platform(s) (model(s) and API/documentation).
+- Human team (researchers with relevant expertise).
+- Execution environment (laboratory or simulation platform).
+- Spreadsheets/DB for collecting responses, justifications, and results.
+
+4. Pre-registration (quick template)
+- Experiment title
+- Pre-registration date
+- Team/affiliations
+- Hypotheses (numbered list)
+- Success criteria (primary/secondary metrics)
+- Statistical analysis plan
+- Conflict of interest statement
+- Instruction: publish the pre-registration in a public repository or store it in a time-stamped file.
+
+5. Detailed procedure per test
+Test 1 — Blind predictions
+- Researchers write 15–30 numbered predictions with short justifications; pre-registration.
+- Provide the AI with only the raw data and the general statement of the problem (without human predictions).
+- Ask the AI to produce a list of equivalent predictions with justifications.
+p Reveal the evaluation data and compare accuracy and justifications.
+- Collection: table with ID, source (human/AI), prediction, justification, observed result (T/F), metric.
+
+Test 2 — Hidden Data Discovery
+- Divide dataset into A (training), B (validation), and C (testing, hidden).
+- Humans and AI receive A+B; both record predictions about C.
+- Reveal C and calculate metrics (RMSE, AUC, accuracy, etc.).
+- Collection: predictions per item/variable, metrics per participant/method.
+
+Test 3 — Design of Experiments
+- Define measurable objective (e.g., maximize yield).
+- Humans and AI submit experimental protocols (parameters, order, controls).
+- Execute protocols in laboratory/simulator.
+- Compare results, costs, and number of iterations.
+- Collection: submitted protocol, resources used, final result, time, feasibility comments.
+
+Test 4 — Interpretation of Ambiguous Results
+- Prepare sets of results with weak signals/noise.
+- Request interpretations and next experimental recommendation (human and AI).
+- Execute the most promising recommendation and record which solution resolved the ambiguity.
+- Collection: interpretation, recommendation, effectiveness of the recommendation, time to resolution.
+
+Test 5 — Evaluation by Experts (double-blind)
+- Format responses/reports from humans and AI anonymously.
+-Panel of 5–9 experts evaluates blinded according to rubric: quality, originality, plausibility, usefulness.
+-Gather scores and justify differences; check for correlation with objective performance.
+-Collection: scores by criterion, comments, incorrect identification (if judges detect AI), correlation with empirical results.
+
+6. Metrics and analysis
+- Primary metrics per test (examples): prediction accuracy, RMSE on hidden data, experimental yield, ambiguity resolution rate, average panel score.
+- Secondary metrics: time to generate prediction, cost, number of iterations, consistency of justification (scale), false positives/negatives rate.
+- Statistical analysis: appropriate hypothesis tests (t-test, Mann-Whitney, bootstrap CI), adjustment for multiple comparisons when necessary.
+- Uncertainty reporting: provide confidence intervals and effect sizes.
+
+7. Spreadsheet/collection format (example)
+- Predictions Table: ID | Author (H/AI) | Prediction # | Prediction text | Short justification | Observed result | Correct (1/0) | Comments
+- Protocols Table: ID | Author | Main parameters | Expectation | Result | Cost | Time | Safety
+- Evaluation Table: Item ID | Evaluator | Criterion 1..4 | Average score | Comment
+
+8. Suggested schedule (quick example)
+
+Week 0: Pre-registration, dataset selection, team definition.
+Weeks 1–2: Execute Tests 1 and 2 (initial collection).
+Weeks 3–4: Execute Tests 3 and 4 (laboratory/simulation).
+Week 5: Test 5 — expert panel.
+Week 6: Analysis and preliminary report.
+
+9. Replication and robustness
+-Repeat each sub-test with at least 3 distinct datasets/contexts.
+-Use different AI models (architectures/training) to check model sensitivity.
+
+10. Ethics, bias, and transparency
+-Declare known biases and limitations.
+-Ensure that AI does not have access to human predictions (input log).
+-Obtain institutional approvals if human participants/risky experiments are involved.
+
+11. Useful attachments
+A. Evaluation rubric (5 points per criterion): quality, originality, plausibility, usefulness, clarity.
+B. Example of pre-registration text (brief).
+C. CSV templates (tables above to copy/paste).
+
+12. How to use this protocol
+-Download or copy the content to the team repository.
+-Adjust the datasets and metrics to the specific domain.
+-Run the tests in the suggested order—but everything is modular.
+-Publish pre-registration and then results and supplemental materials.
+
+=====End of Protocol=====
