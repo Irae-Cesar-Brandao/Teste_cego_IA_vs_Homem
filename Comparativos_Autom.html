@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Teste Cego — IA vs Intuição + Comparativos</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:Inter, sans-serif; background:#0f1724; color:#e6eef6; padding:24px;}
+.chart-card{background:#0b1220;padding:16px;border-radius:12px;margin-top:20px}
+canvas{max-width:100%;}
+.btn{padding:8px 12px;border-radius:8px;background:#06b6d4;color:#042027;font-weight:600;cursor:pointer;border:0;margin-right:8px}
+</style>
+</head>
+<body>
+<h1>Comparativos Automáticos — IA vs Humanos</h1>
+<p>Importe um CSV das previsões ou avaliações e gere estatísticas automaticamente.</p>
+
+
+<input type="file" id="csvFile" accept=".csv" class="btn" />
+<button class="btn" id="analisar">Analisar</button>
+
+
+<div id="resultado"></div>
+<div class="chart-card"><canvas id="grafico"></canvas></div>
+
+
+<script>
+function parseCSV(text){
+return text.split(/\r?\n/).map(l=>l.split(',').map(c=>c.replace(/^"|"$/g,'')));
+}
+
+
+document.getElementById('analisar').addEventListener('click',()=>{
+const file=document.getElementById('csvFile').files[0];
+if(!file){alert('Selecione um CSV');return}
+const reader=new FileReader();
+reader.onload=e=>{
+const rows=parseCSV(e.target.result);
+const header=rows.shift();
+// Detecta se é CSV de previsões ou avaliações
+const isAvaliacao = header.includes('Qualidade');
+
+
+if(isAvaliacao){ gerarEstatisticasAvaliacao(rows); }
+else { gerarEstatisticasPrevisoes(rows); }
+}
+reader.readAsText(file);
+});
+
+
+function gerarEstatisticasPrevisoes(rows){
+let contaIA=0, contaHum=0;
+rows.forEach(r=>{
+if(r[1]==='IA') contaIA++; else contaHum++;
+});
+
+
+document.getElementById('resultado').innerHTML = `
+<h2>Resumo: Previsões</h2>
+<p>Total IA: <b>${contaIA}</b></p>
+<p>Total Humanos: <b>${contaHum}</b></p>
+`;
+
+
+plotarGrafico(['IA','Humano'], [contaIA,contaHum], 'Comparação de previsões');
+}
+
+
+function gerarEstatisticasAvaliacao(rows){
+let dadosIA=[], dadosHum=[];
+rows.forEach(r=>{
+const media=parseFloat(r[6]);
+if(r[0].toLowerCase().includes('ia')) dadosIA.push(media);
+else dadosHum.push(media);
+});
+
+
+const mediaIa=(dadosIA.reduce((a,b)=>a+b,0)/dadosIA.length).toFixed(2);
+const mediaHum=(dadosHum.reduce((a,b)=>a+b,0)/dadosHum.length).toFixed(2);
+
+
+document.getElementById('resultado').innerHTML=`
+<h2>Resumo: Avaliações</h2>
+<p>Média IA: <b>${mediaIa}</b></p>
+<p>Média Humanos: <b>${mediaHum}</b></p>
+`;
+
+
+plotarGrafico(['IA','Humano'], [mediaIa,mediaHum], 'Média de Avaliações');
+}
+
+
+let chart;
+function plotarGrafico(labels, values, titulo){
+if(chart) chart.destroy();
+const ctx=document.getElementById('grafico');
+chart=new Chart(ctx,{
+type:'bar',
+data:{labels:labels, datasets:[{label:titulo, data:values}]},
+options:{responsive:true,scales:{y:{beginAtZero:true}}}
+});
+}
+</script>
+</body>
+</html>

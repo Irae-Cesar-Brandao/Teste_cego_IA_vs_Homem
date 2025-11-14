@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teste Cego — IA vs Intuição Humana</title>
+  
+<!- ESTILIZAÇÃO CSS -->
+<style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--glass: rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+
+    body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:linear-gradient(180deg,#071025 0%, #071a2a 100%); color:#e6eef6; padding:24px}
+
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+
+    h1{font-size:20px;margin:0}
+
+    p.lead{margin:0;color:var(--muted)}
+
+    .app{display:grid;grid-template-columns:320px 1fr;gap:20px}
+
+    .sidebar{background:var(--card);padding:14px;border-radius:12px;min-height:420px}
+
+    .tab{display:block;padding:10px;border-radius:8px;margin-bottom:8px;color:var(--muted);cursor:pointer;border:1px solid transparent}
+
+    .tab.active{background:linear-gradient(90deg, rgba(6,182,212,0.08), rgba(59,130,246,0.03));color:#dff7fb;border-color:rgba(255,255,255,0.03)}
+
+    .main{background:var(--card);padding:18px;border-radius:12px;min-height:420px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+
+    input[type=text], textarea, select, input[type=number]{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit}
+    textarea{min-height:80px}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;border:0;padding:9px 12px;border-radius:10px;cursor:pointer;background:var(--accent);color:#042027;font-weight:600}
+
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+    table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+
+    table thead th{background:rgba(255,255,255,0.03);padding:8px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.04)}
+
+    table tbody td{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.02)}
+
+    .row-actions{display:flex;gap:6px}
+
+    .note{font-size:13px;color:var(--muted);margin-top:10px}
+
+    footer{margin-top:14px;color:var(--muted);font-size:13px}
+
+    @media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{order:2}.main{order:1}}
+
+  </style>
+
+
+<!- CORPO DA PÁGINA -->
+</head>
+<body>
+  <header>
+    <div>
+      <h1><b> TESTE CEGO — IA versus Intuição Humana </b></h1>
+	<h5><i> By: Iraê César Brandão - DEV  (Criação em: 13-11-2025) </i></h5>
+	<hr>
+
+      <p class="lead">Página para Registros e Protocolo prático e replicável com finalidade de comparar previsões, hipóteses, decisões, interpretações e avaliações de "IAs científicas" com a "Intuição de pesquisadores humanos", contendo passos operacionais para os cinco testes, templates de pré-registro, formulários de coleta e métricas de avaliação.  Após editado, Salve localmente ou exporte CSVs.</p>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="tabs">
+        <button class="tab active" data-tab="previsoes">1. Previsões (Teste 1 & 2)</button>
+        <button class="tab" data-tab="protocolos">2. Protocolos (Teste 3)</button>
+        <button class="tab" data-tab="interpretacao">3. Interpretação (Teste 4)</button>
+        <button class="tab" data-tab="avaliacao">4. Avaliação (Teste 5)</button>
+        <button class="tab" data-tab="guia">Guia Explicativo</button>
+      </div>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+      <div class="note">Dica rápida: preencha os formulários (abaixo ou  à direita conforme seu browser) e clique <strong>Adicionar Previsão</strong>. Use <strong>Exportar CSV</strong> para baixar os dados. Para Salvamento Localmente ou <strong>Limpar Tudo </strong> para apagar os dados editados (apagará tudo).<br>
+Querendo fazer comparações das planilhas CSV, basta clicar abaixo em <strong>Fazer Comparativos</strong>, abrirá outra janela onde deve importar os arquivos CSV e fazer a comparação.</div>
+    </aside>
+
+    <main class="main">
+
+      <!--PREVISÕES-->
+      <section id="previsoes" class="tabpage">
+        <h2>1. Previsões Cegas / Dados Ocultos</h2>
+        <div class="grid">
+          <div>
+            <label>Autor (Humano ou IA)</label>
+            <select id="p_autor"><option>Humano</option><option>IA</option></select>
+          </div>
+          <div>
+            <label>Número da Previsão</label>
+            <input id="p_num" type="number" min="1" value="1">
+          </div>
+        </div>
+        <label>Texto da Previsão</label>
+        <textarea id="p_text" placeholder="Ex.: 'Variável X correlaciona positivamente com Y em condição A' "></textarea>
+        <label>Justificativa curta</label>
+        <input id="p_just" type="text" placeholder="Motivo ou evidência curta">
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn" id="addPre">Adicionar Previsão</button>
+          <button class="btn ghost" id="clearPre">Limpar campos</button>
+          <button class="btn" id="expPre">Exportar CSV</button>
+        </div>
+
+        <table id="tablePre">
+          <thead><tr><th>ID</th><th>Autor</th><th>#</th><th>Previsão</th><th>Justificativa</th><th>Resultado</th><th>Ações</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- PROTOCOLOS -->
+      <section id="protocolos" class="tabpage" style="display:none">
+        <h2>2. Protocolos Experimentais</h2>
+        <label>Autor (Humano/IA)</label>
+        <select id="pro_autor"><option>Humano</option><option>IA</option></select>
+        <label>Objetivo do Experimento</label>
+        <input id="pro_obj" type="text" placeholder="Ex.: maximizar rendimento">
+        <label>Parâmetros Principais (resuma)</label>
+        <textarea id="pro_params"></textarea>
+        <label>Expectativa de Resultado</label>
+        <input id="pro_expect" type="text">
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn" id="addPro">Adicionar Protocolo</button>
+          <button class="btn ghost" id="expPro">Exportar CSV</button>
+        </div>
+
+        <table id="tablePro">
+          <thead><tr><th>ID</th><th>Autor</th><th>Objetivo</th><th>Parâmetros</th><th>Expectativa</th><th>Resultado</th><th>Custo</th><th>Ações</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- INTERPRETAÇÃO -->
+      <section id="interpretacao" class="tabpage" style="display:none">
+        <h2>3. Interpretação e Recomendações</h2>
+        <label>Autor (Humano/IA)</label>
+        <select id="i_autor"><option>Humano</option><option>IA</option></select>
+        <label>Resumo dos Dados Ambíguos</label>
+        <textarea id="i_resumo"></textarea>
+        <label>Interpretação Proposta</label>
+        <input id="i_interp" type="text">
+        <label>Recomendação de Próximo Passo</label>
+        <input id="i_reco" type="text">
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn" id="addInt">Adicionar Interpretação</button>
+          <button class="btn ghost" id="expInt">Exportar CSV</button>
+        </div>
+
+        <table id="tableInt">
+          <thead><tr><th>ID</th><th>Autor</th><th>Resumo</th><th>Interpretação</th><th>Recomendação</th><th>Efetividade</th><th>Ações</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- AVALIAÇÃO -->
+      <section id="avaliacao" class="tabpage" style="display:none">
+        <h2>4. Avaliação por Especialistas</h2>
+        <label>Item ID</label>
+        <input id="a_item" type="text">
+        <label>Avaliador</label>
+        <input id="a_nome" type="text">
+        <div class="grid">
+          <div>
+            <label>Qualidade (1–5)</label>
+            <input id="a_q" type="number" min="1" max="5" value="4">
+          </div>
+          <div>
+            <label>Originalidade (1–5)</label>
+            <input id="a_o" type="number" min="1" max="5" value="4">
+          </div>
+        </div>
+        <div class="grid" style="margin-top:8px">
+          <div>
+            <label>Plausibilidade (1–5)</label>
+            <input id="a_p" type="number" min="1" max="5" value="4">
+          </div>
+          <div>
+            <label>Utilidade (1–5)</label>
+            <input id="a_u" type="number" min="1" max="5" value="4">
+          </div>
+        </div>
+        <label>Comentário do Avaliador</label>
+        <textarea id="a_coment"></textarea>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn" id="addAva">Adicionar Avaliação</button>
+          <button class="btn ghost" id="expAva">Exportar CSV</button>
+        </div>
+
+        <table id="tableAva">
+          <thead><tr><th>Item</th><th>Avaliador</th><th>Qualidade</th><th>Originalidade</th><th>Plausibilidade</th><th>Utilidade</th><th>Média</th><th>Ações</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- GUIA -->
+      <section id="guia" class="tabpage" style="display:none">
+        <h2>Guia Explicativo</h2>
+        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:var(--muted)">
+          <strong>EXPLICAÇÃO DOS PROCESSOS</strong>
+          <p class="note">Esta página registra e organiza os cinco testes do protocolo. Cada aba corresponde a um teste. Preencha os formulários, adicione linhas e exporte CSV para análise. Mantenha versões e prefira pré-registro público.</p>
+          <ol>
+            <li><strong>Previsões cegas:</strong> registre previsões e justificativas antes da exposição aos dados de teste.</li>
+            <li><strong>Dados ocultos:</strong> use divisões treino/val/test para avaliar generalização.</li>
+            <li><strong>Protocolos:</strong> compare planos experimentais quanto a eficácia e custo.</li>
+            <li><strong>Interpretação:</strong> documente recomendações sobre dados ambíguos e acompanhe resultados.</li>
+            <li><strong>Avaliação:</strong> painel sete critérios e mantenha avaliações cegas.</li>
+          </ol>
+          <p class="note">Exporte os CSVs e armazene versões datadas. Esta ferramenta funciona localmente — os dados ficam no seu navegador e em arquivos exportados.</p>
+        </div>
+      </section>
+
+      <footer>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div>Feito para facilitar seu teste — modifique campos conforme o domínio.</div>
+          <div>
+            <button class="btn" id="saveLS">Salvar localmente</button>
+            <button class="btn ghost" id="clearAll">Limpar tudo</button>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+
+<!-- SCRIPT JS -->
+  <script>
+    // TABS
+    document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click', e=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      e.target.classList.add('active');
+      const id = e.target.dataset.tab;
+      document.querySelectorAll('.tabpage').forEach(s=>s.style.display='none');
+      document.getElementById(id).style.display='block';
+    }));
+
+    // UTILITIES
+    function createRow(tableId, cells){
+      const tbody = document.querySelector(tableId+' tbody');
+      const tr = document.createElement('tr');
+      cells.forEach(c=>{
+        const td = document.createElement('td'); td.innerHTML = c; tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+      return tr;
+    }
+    function downloadCSV(filename, rows){
+      const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename; document.body.appendChild(link); link.click(); link.remove();
+    }
+
+    // STORAGE HELPERS
+    function saveState(){
+      const state = {
+        previsoes: tableToArray('#tablePre'),
+        protocolos: tableToArray('#tablePro'),
+        interpretacoes: tableToArray('#tableInt'),
+        avaliacoes: tableToArray('#tableAva')
+      };
+      localStorage.setItem('testeCegoState', JSON.stringify(state));
+      alert('Salvo no navegador (localStorage).');
+    }
+    function loadState(){
+      const s = localStorage.getItem('testeCegoState');
+      if(!s) return;
+      const state = JSON.parse(s);
+      state.previsoes.forEach(r=>appendPreRow(r));
+      state.protocolos.forEach(r=>appendProRow(r));
+      state.interpretacoes.forEach(r=>appendIntRow(r));
+      state.avaliacoes.forEach(r=>appendAvaRow(r));
+    }
+    function clearAll(){ if(confirm('Limpar todos os dados locais?')){['#tablePre','#tablePro','#tableInt','#tableAva'].forEach(sel=>document.querySelector(sel+' tbody').innerHTML=''); localStorage.removeItem('testeCegoState');}}
+
+    function tableToArray(sel){
+      return Array.from(document.querySelectorAll(sel+' tbody tr')).map(tr=>Array.from(tr.children).slice(0,-1).map(td=>td.innerText));
+    }
+
+    // PREVISÕES
+    let preId=1;
+    document.getElementById('addPre').addEventListener('click', ()=>{
+      const autor = document.getElementById('p_autor').value;
+      const num = document.getElementById('p_num').value;
+      const text = document.getElementById('p_text').value.trim();
+      const just = document.getElementById('p_just').value.trim();
+      if(!text){alert('Preencha a previsão');return}
+      appendPreRow([preId, autor, num, text, just, '', '']); preId++; clearPreFields();
+    });
+    function appendPreRow(arr){
+      const tr = createRow('#tablePre', arr.concat([`<div class="row-actions"><button onclick="editRow(this)" class="btn ghost">Editar</button><button onclick="delRow(this)" class="btn ghost">Apagar</button></div>`]));
+    }
+    function clearPreFields(){document.getElementById('p_text').value='';document.getElementById('p_just').value='';document.getElementById('p_num').value=preId}
+    document.getElementById('expPre').addEventListener('click', ()=>{downloadCSV('previsoes.csv', [['ID','Autor','#','Previsao','Justificativa','Resultado','Acuracia']].concat(tableToArray('#tablePre')))});
+    document.getElementById('clearPre').addEventListener('click', clearPreFields);
+
+    // PROTOCOLOS
+    let proId=1;
+    document.getElementById('addPro').addEventListener('click', ()=>{
+      const autor = document.getElementById('pro_autor').value;
+      const obj = document.getElementById('pro_obj').value.trim();
+      const params = document.getElementById('pro_params').value.trim();
+      const expect = document.getElementById('pro_expect').value.trim();
+      if(!obj){alert('Preencha o objetivo');return}
+      appendProRow([proId, autor, obj, params, expect, '', '']); proId++; clearProFields();
+    });
+    function appendProRow(arr){ createRow('#tablePro', arr.concat([`<div class="row-actions"><button onclick="editRow(this)" class="btn ghost">Editar</button><button onclick="delRow(this)" class="btn ghost">Apagar</button></div>`])); }
+    function clearProFields(){document.getElementById('pro_obj').value='';document.getElementById('pro_params').value='';document.getElementById('pro_expect').value='';}
+    document.getElementById('expPro').addEventListener('click', ()=>{downloadCSV('protocolos.csv', [['ID','Autor','Objetivo','Parametros','Expectativa','Resultado','Custo']].concat(tableToArray('#tablePro')))});
+
+    // INTERPRETAÇÃO
+    let intId=1;
+    document.getElementById('addInt').addEventListener('click', ()=>{
+      const autor = document.getElementById('i_autor').value;
+      const resumo = document.getElementById('i_resumo').value.trim();
+      const interp = document.getElementById('i_interp').value.trim();
+      const reco = document.getElementById('i_reco').value.trim();
+      if(!resumo){alert('Preencha o resumo dos dados');return}
+      appendIntRow([intId, autor, resumo, interp, reco, '', '']); intId++; clearIntFields();
+    });
+    function appendIntRow(arr){ createRow('#tableInt', arr.concat([`<div class="row-actions"><button onclick="editRow(this)" class="btn ghost">Editar</button><button onclick="delRow(this)" class="btn ghost">Apagar</button></div>`])); }
+    function clearIntFields(){document.getElementById('i_resumo').value='';document.getElementById('i_interp').value='';document.getElementById('i_reco').value='';}
+    document.getElementById('expInt').addEventListener('click', ()=>{downloadCSV('interpretacoes.csv', [['ID','Autor','Resumo','Interpretacao','Recomendacao','Efetividade','Tempo']].concat(tableToArray('#tableInt')))});
+
+    // AVALIAÇÃO
+    document.getElementById('addAva').addEventListener('click', ()=>{
+      const item = document.getElementById('a_item').value.trim();
+      const nome = document.getElementById('a_nome').value.trim();
+      const q = Number(document.getElementById('a_q').value||0);
+      const o = Number(document.getElementById('a_o').value||0);
+      const p = Number(document.getElementById('a_p').value||0);
+      const u = Number(document.getElementById('a_u').value||0);
+      const com = document.getElementById('a_coment').value.trim();
+      if(!item||!nome){alert('Preencha item e avaliador');return}
+      const media = ((q+o+p+u)/4).toFixed(2);
+      appendAvaRow([item, nome, q, o, p, u, media, `<div class="row-actions"><button onclick="editRow(this)" class="btn ghost">Editar</button><button onclick="delRow(this)" class="btn ghost">Apagar</button></div>`]);
+      clearAvaFields();
+    });
+    function appendAvaRow(arr){ createRow('#tableAva', arr); }
+    function clearAvaFields(){document.getElementById('a_item').value='';document.getElementById('a_nome').value='';document.getElementById('a_coment').value='';document.getElementById('a_q').value=4;document.getElementById('a_o').value=4;document.getElementById('a_p').value=4;document.getElementById('a_u').value=4;}
+    document.getElementById('expAva').addEventListener('click', ()=>{downloadCSV('avaliacoes.csv', [['Item','Avaliador','Qualidade','Originalidade','Plausibilidade','Utilidade','Media']].concat(tableToArray('#tableAva')))});
+
+    // EDIT / DELETE row functions (delegated via inline onclick)
+    window.delRow = function(btn){ if(confirm('Remover linha?')) btn.closest('tr').remove(); }
+    window.editRow = function(btn){
+      const tr = btn.closest('tr');
+      const cells = Array.from(tr.children).slice(0,-1).map(td=>td.innerText);
+      // Simple heuristic to determine which table
+      const tbl = tr.closest('table').id;
+      if(tbl==='tablePre'){
+        document.getElementById('p_autor').value = cells[1]; document.getElementById('p_num').value=cells[2]; document.getElementById('p_text').value=cells[3]; document.getElementById('p_just').value=cells[4]; tr.remove();
+      } else if(tbl==='tablePro'){
+        document.getElementById('pro_autor').value=cells[1]; document.getElementById('pro_obj').value=cells[2]; document.getElementById('pro_params').value=cells[3]; document.getElementById('pro_expect').value=cells[4]; tr.remove();
+      } else if(tbl==='tableInt'){
+        document.getElementById('i_autor').value=cells[1]; document.getElementById('i_resumo').value=cells[2]; document.getElementById('i_interp').value=cells[3]; document.getElementById('i_reco').value=cells[4]; tr.remove();
+      } else if(tbl==='tableAva'){
+        document.getElementById('a_item').value=cells[0]; document.getElementById('a_nome').value=cells[1]; document.getElementById('a_q').value=cells[2]; document.getElementById('a_o').value=cells[3]; document.getElementById('a_p').value=cells[4]; document.getElementById('a_u').value=cells[5]; document.getElementById('a_coment').value=''; tr.remove();
+      }
+    }
+
+    // SAVE/LOAD/CLEAR
+    document.getElementById('saveLS').addEventListener('click', saveState);
+    document.getElementById('clearAll').addEventListener('click', clearAll);
+    document.querySelectorAll('.tabpage table').forEach(t=>t.addEventListener('click', ()=>{}));
+
+    // LOAD ON START
+    loadState();
+  </script>
+
+
+
+<br><br>
+<!-- BOTÃO DE FAZER COMPARATIVOS --> 
+<a href="Comparativos_Autom.html"   target="_blank" rel="noopener noreferrer">
+	<button><h1>Fazer Comparativos</h1> </button></a>
+
+
+<br><br>
+<hr><hr>
+<h1> ORIENTAÇÕES PARA EXECUÇÃO DO TESTE </h1>
+<h2>(i) Teste de previsões cegas: </h2>
+ Os pesquisadores registram suas previsões antes do experimento, enquanto a IA analisa os mesmos dados sem acesso a essas informações. Depois, comparam-se os acertos e as justificativas de ambos. É uma forma direta e justa de ver se a IA consegue “intuir” padrões como o ser humano.
+<br>
+<h2>(ii) Descoberta em dados ocultos: </h2>
+Humanos e IA estudam apenas parte de um conjunto de dados e fazem previsões sobre uma parte que permanece escondida. Quando os dados ocultos são revelados, verifica-se quem previu melhor. Esse teste mostra quem realmente compreende a lógica por trás dos fenômenos (e quem apenas reconhece padrões).
+<br>
+<h2>(iii) Desenho de experimentos:</h2>
+Tanto a IA quanto os humanos propõem protocolos experimentais para alcançar o melhor resultado possível. As propostas são executadas e comparadas em termos de eficiência, custo e resultado. É um teste da capacidade de planejar, onde a intuição humana costuma brilhar (mas a IA pode surpreender).
+<br>
+<h2>(iv) Interpretação de resultados ambíguos: </h2>
+Ambos recebem dados complexos ou inconclusivos e devem sugerir a próxima etapa do estudo. Depois, compara-se qual recomendação realmente ajudou a resolver o problema. Aqui se testa a sensibilidade interpretativa (o “instinto” de leitura de sinais sutis).
+<br>
+<H2>(v) Avaliação por especialistas:</h2>
+As respostas de humanos e IA são apresentadas de forma anônima a um painel de especialistas, que julga qualidade, coerência e criatividade sem saber quem é quem. O resultado mostra se a IA já consegue soar tão convincente (e intuitiva quanto uma mente humana).
+Enfim, a experimentação é o melhor caminho para conclusões. 
+<br><br>
+
+
+<hr><hr>
+<br>
+<h1><b>PROTOCOLO: TESTE CEGO — IA vs Intuição Humana</b></h1><br>
+
+====Início Protocolo====<br><br>
+<b>RESUMO:</b>
+Protocolo prático e replicável para comparar previsões, hipóteses e decisões de IAs científicas com a intuição de pesquisadores humanos. Contém passos operacionais para os cinco testes, templates de pré-registro, formulários de coleta e métricas de avaliação.
+
+<h2>1. Objetivo</h2>
+<ul>
+<li>Avaliar, de modo controlado e reproduzível, até que ponto modelos de IA conseguem igualar 
+<li>ou complementar a intuição humana em tarefas científicas de previsão, descoberta e projeto experimental.
+</ul>
+
+<br>
+<h2>2. Visão geral do ensaio</h2>
+
+Cinco blocos de teste: <br>
+(1) Previsões Cegas, <br>
+(2) Descoberta em Dados Ocultos, <br>
+(3) Desenho de Experimentos, <br>
+(4) Interpretação de Resultados Ambíguos, <br>
+(5) Avaliação por Especialistas.
+<ul>
+<li>Procedimento double-blind entre as equipes humanas/IA e os avaliadores quando aplicável.
+<li>Pre-registro do protocolo e das previsões humanas antes de iniciar execuções.
+</ul>
+
+<br>
+<h2>3. Recursos necessários</h2>
+<ul>
+<li>Conjunto(s) de dados apropriados (ou simulações realistas).
+<li>Acesso à(s) plataforma(s) de IA (modelo(s) e API/documentação).
+<li>Equipe humana (pesquisadores com expertise relevante).
+<li>Ambiente de execução (laboratório ou plataforma de simulação).
+<li>Planilhas/DB para coleta de respostas, justificativas e resultados.
+</ul>
+
+<br>
+<h2>4. Pré-registro (template rápido)</h2>
+<ul>
+<li>Título do experimento
+<li>Data de pré-registro
+<li>Equipe/afiliações
+<li>Hipóteses (lista numerada)
+<li>Critérios de sucesso (métricas primárias/secundárias)
+<li>Plano de análise estatística
+<li>Registro de conflito de interesse
+<li>Instrução: publicar o pré-registro em repositório público ou armazenar num arquivo com carimbo de data.
+</ul>
+
+<br>
+<h2>5. Procedimento detalhado por teste</h2>
+
+<h3>Teste 1 — Previsões Cegas</h3>
+<ul>
+<li>Pesquisadores escrevem 15–30 previsões numeradas com justificativas curtas; pre-registro.</li>
+<li>Fornecer à IA apenas os dados brutos e o enunciado geral do problema (sem previsões humanas).</li>
+<li>Solicitar à IA que produza uma lista de previsões equivalentes com justificativas.</li>
+<li>Revelar os dados de avaliação e comparar acurácia e justificativas.</li>
+<li>Coleta: tabela com ID, fonte (humano/IA), previsão, justificação, resultado observado (V/F), métrica.</li>
+</ul>
+
+<h3>Teste 2 — Descoberta em Dados Ocultos</h3>
+<ul>
+<li>Dividir dataset em A (treino), B (validação) e C (teste, oculto).</li>
+<li>Humanos e IA recebem A+B; ambos registram previsões sobre C.</li>
+<li>Revelar C e calcular métricas (RMSE, AUC, acurácia, etc.).</li>
+<li>Coleta: previsões por item/variável, métricas por participante/método.</li>
+</ul>
+
+<h3>Teste 3 — Desenho de Experimentos</h3>
+<ul>
+<li>Definir objetivo objetivo mensurável (ex.: maximizar rendimento).</li>
+<li>Humanos e IA submetem protocolos experimentais (params, ordem, controles).</li>
+<li>Executar protocolos em laboratório/simulador.</li>
+<li>Comparar resultados, custos e número de iterações.</li>
+<li>Coleta: protocolo submetido, recursos usados, resultado final, tempo, comentários de viabilidade.</li>
+</ul>
+
+<h3>Teste 4 — Interpretação de Resultados Ambíguos</h3>
+<ul>
+<li>Preparar conjuntos de resultados com sinais fracos/ruído.</li>
+<li>Pedir interpretações e próxima recomendação experimental (humano e IA).</li>
+<li>Executar recomendação mais promissora e registrar qual solução resolveu ambiguidade.</li>
+<li>Coleta: interpretação, recomendação, eficácia da recomendação, tempo até resolução.</li>
+</ul>
+
+<h3>Teste 5 — Avaliação por Especialistas (double-blind)</h3>
+<ul>
+<li>Formatar respostas/relatórios de humanos e IA de forma anônima.</li>
+<li>Painel de 5–9 especialistas avalia blindado segundo rubric: qualidade, originalidade, plausibilidade, utilidade.</li>
+<li>Reunir notas e justificar diferenciações; verificar se há correlação com desempenho objetivo.</li>
+<li>Coleta: notas por critério, comentários, identificação incorreta (se jurados detectam IA), correlação com resultados empíricos. </li>
+</ul>
+
+<br>
+<h2>6. Métricas e análise</h2>
+<ul>
+<li>Métrica primária por teste (exemplos): acurácia das previsões, RMSE em dados ocultos, rendimento experimental, taxa de resolução de ambiguidade, pontuação média do painel.
+<li>Métricas secundárias: tempo para gerar previsão, custo, número de iterações, coerência da justificativa (escala), taxa de false positives/negatives.
+<li>Análise estatística: testes de hipótese apropriados (t-test, Mann-Whitney, bootstrap CI), ajuste para múltiplas comparações quando necessário.
+<li>Reporte de incerteza: fornecer intervalos de confiança e effect sizes.
+</ul>
+
+<br>
+<h2>7. Planilha / formato de coleta (exemplo)</h2>
+<ul>
+<li>Tabela Previsões: ID | Autor (H/IA) | Previsão # | Texto previsão | Justificação curta | Resultado observado | 
+<li>Acerto (1/0) | Observações
+<li>Tabela Protocolos: ID | Autor | Parâmetros principais | Expectativa | Resultado | Custo | Tempo | Segurança
+<li>Tabela Avaliação: Item ID | Avaliador | Critério1..4 | Nota média | Comentário
+</ul>
+
+<br>
+<h2> 8. Cronograma sugerido (exemplo rápido)</h2>
+<ul>
+<li>Semana 0: Pré-registro, seleção de datasets, definir equipe.
+<li>Semana 1–2: Execução Teste 1 e 2 (coleta inicial).
+<li>Semana 3–4: Execução Teste 3 e 4 (laboratório/simulação).
+<li>Semana 5: Teste 5 — painel de especialistas.
+<li>Semana 6: Análise e relatório preliminar.
+</ul>
+
+<br>
+<h2> 9. Replicação e robustez </h2>
+<ul>
+<li>Repetir cada sub-teste com pelo menos 3 datasets/contexts distintos.
+<li>Usar diferentes modelos de IA (arquiteturas/treinos) para checar sensibilidade ao modelo.
+</ul>
+
+<br>
+<h2> 10. Ética, viés e transparência</h2>
+</ul>
+<li>Declare vieses conhecidos e limitações.
+<li>Assegure que a IA não tenha acesso a previsões humanas (log de inputs).
+<li>Obtenha aprovações institucionais se envolveram participantes humanos/experimentos com risco.
+</ul>
+
+<br>
+<h2>11. Anexos úteis</h2>
+<ul>
+<li>A. Rubrica de avaliação (5 pontos por critério): qualidade, originalidade, plausibilidade, utilidade, clareza.
+<li>B. Exemplo de texto de pré-registro (breve).
+<li>C. CSV templates (tabelas acima para copiar/colar).
+</ul>
+
+<br>
+<h2>12. Como usar este protocolo</h2>
+<ul>
+<li>Baixe ou copie o conteúdo para o repositório da equipe.
+<li>Ajuste os datasets e métricas ao domínio específico.
+<li>Execute os testes na ordem sugerida — mas tudo é modular.
+<li>Publique pré-registro e depois os resultados e materiais suplementares.
+</ul>
+
+
+==== Fim do protocolo====
+<hr>
+</body>
+</html>
+
+
+
