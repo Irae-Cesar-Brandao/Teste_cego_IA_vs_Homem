@@ -1,6 +1,8 @@
 # Teste_cego_IA_vs_Homem
 Código html exemplificando e orientaldo com o código html/css/javascript é elaborado con finalidade comparativa de desempenhos entre Inteligência Artificial versus Intuição Humana
 
+Link: https://irae-cesar-brandao.github.io/Teste_cego_IA_vs_Homem/  
+
 ROTEIRO: 
 Sugestão para execução desse teste:
 
